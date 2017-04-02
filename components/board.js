@@ -1,23 +1,17 @@
 import React from 'react';
 
-class Board extends React.PureComponent {
+const Board = ({items, rows, cols, mainWidth, mainHeight}) => (
 
-	render() {
-		let built = this.props.items.map((row, row_i) => {
-			let row_content = row.map((field, field_i) => {
-				return <td key={field_i} className={`cell ${field ? 'live' : 'dead'}`}></td>;
-			});
-			return <tr key={row_i}>{row_content}</tr>;
-		});
-		return (
-			<table className="board">
-				<tbody>
-					{built}
-				</tbody>
-			</table>
-		);
-	}
+	<table className="board">
+		<tbody>
+			{items.map((row, row_i) => (
+				<tr key={row_i}>{row.map((field, field_i) => (
+					<td key={field_i} className={`cell ${field ? 'live' : 'dead'}`}></td>
+				))}</tr>
+			))}
+		</tbody>
+	</table>
 
-}
+);
 
 export default Board;

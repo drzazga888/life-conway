@@ -12,14 +12,16 @@ class Stats extends React.PureComponent {
 
 	componentDidMount() {
 		this.chart = new Dygraph(this.refs.chartDom, this.state.liveHistory, {
-			labels: ['Krok', 'Żywe komórki'],
+			labels: ['Krok', 'Gęstość'],
 			axes: {
 				'y': {
-					axisLabelFormatter: val => `${Number(val * 100 / this.props.all).toFixed(3)}%`,
+					axisLabelFormatter: val => `${Number(val * 100 / this.props.all).toFixed(2)}%`,
 					valueFormatter: val => `${Number(val * 100 / this.props.all).toFixed(3)}% (${val} żywych)`,
 					includeZero: true
 				}
-			}
+			},
+			legend: 'always',
+			color: '#7AFF9B'
 		});
 	}
 
@@ -46,13 +48,11 @@ class Stats extends React.PureComponent {
 
 	render() {
 		return (
-			<div>
-				<p>
-					Krok {this.props.step}: {this.props.live} żywych komórek
-					na {this.props.all} wszystkich
-					({Number(this.props.live * 100 / this.props.all).toFixed(3)}%)
-				</p>
-				<div ref="chartDom"></div>
+			<div className="stats">
+				<p>Krok: <strong>{this.props.step}</strong></p>
+				<p>Gęstość: <strong>{Number(this.props.live * 100 / this.props.all).toFixed(3)}%</strong></p>
+				<p><strong>{this.props.live}</strong> żywych komórek na <strong>{this.props.all}</strong> wszystkich</p>
+				<div className="chart" ref="chartDom"></div>
 			</div>
 		);
 	}

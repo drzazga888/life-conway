@@ -7,6 +7,15 @@ $accent: #7AFF9B;
 
 $cellSize: 10px;
 
+html {
+	height: 100%;
+	min-height: 100%;
+}
+
+#react-me {
+	height: 100%;
+}
+
 * {
 	font-family: 'Poiret One', cursive;
 	color: $fontColor;
@@ -16,6 +25,7 @@ $cellSize: 10px;
 body {
 	background: $bgColor;
 	margin: 0;
+	height: 100%;
 }
 
 button {
@@ -25,8 +35,9 @@ button {
 	padding: 5px 25px;
 }
 
+input:disabled,
 button:disabled {
-	opacity: 0.3;
+	opacity: 0.5;
 }
 
 input {
@@ -36,37 +47,98 @@ input {
 }
 
 h1 {
-	font-size: 2.5em;
+	font-size: 2.3em;
+}
+
+strong {
+	color: $accent;
 }
 
 .app {
 	display: flex;
-
-	.ui {
-		padding: 10px;
-
-		.ui-block {
-			border-bottom: $uiColor solid 1px;
-		}
-
-		.label-block {
-
+	height: 100%;
+	.side {
+		flex-basis: 400px;
+		flex-grow: 0;
+		flex-shrink: 0;
+		padding-right: 20px;
+		padding: 20px;
+		.app-header {
 			&>* {
-				display: block;
+				margin: 10px 0;
+			}
+		}
+		&>* {
+			border-bottom: dotted 2px $uiColor;
+			padding: 20px 0;
+		}
+		&>*:last-child {
+			border-bottom: none;
+		}
+		overflow-y: auto;
+	}
+	.main {
+		padding: 20px;
+		flex-grow: 1;
+		display: flex;
+	}
+}
+
+.board {
+	border: solid 1px $uiColor;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	.cell {
+			width: $cellSize;
+			height: $cellSize;
+			&.live {
+				background: $accent;
+			}
+	}
+}
+
+.inputs {
+	.buttons {
+		margin-left: -10px;
+		margin-top: -10px;
+	}
+	.input-blocks {
+		&>label {
+			display: block;
+			margin: 8px 0;
+			width: 100%;
+			clear: both;
+			&>* {
+				width: 50%;
+				float: right;
 			}
 		}
 	}
+}
 
-	.board {
-
-		.cell {
-		    width: $cellSize;
-		    height: $cellSize;
-
-		    &.live {
-		    	background: $accent;
-		    }
+.stats {
+	.dygraph-legend {
+		background: $bgColor;
+		border: solid 1px $uiColor;
+		padding: 3px;
+		top: 0 !important;
+		right: 0 !important;
+		width: 70% !important;
+		* {
+			font-size: 13px;
 		}
-
+	}
+	.dygraph-axis-label {
+		color: $fontColor;
+		font-size: 13px;
+	}
+	.chart {
+		width: 100%;
+		height: 300px;
+		&>* {
+			width: 100% !important;
+			height: 100% !important;
+		}
 	}
 }
