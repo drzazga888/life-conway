@@ -39,6 +39,8 @@ export default class App extends Reflux.Component {
         <div className="main" ref="main">
           <Board
             items={this.state.items}
+            cols={this.state.cols}
+            rows={this.state.rows}
           />
         </div>
       </div>

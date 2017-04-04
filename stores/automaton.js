@@ -12,8 +12,8 @@ class AutomatonStore extends Reflux.Store {
     this.state = {
       step: 0,
       density: 0.1,
-      rows: 40,
-      cols: 60,
+      rows: 80,
+      cols: 120,
       isPlaying: false,
       interval: 100
     };

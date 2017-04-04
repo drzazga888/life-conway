@@ -19,10 +19,15 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 				Gestosc (%):
 				<input
 					type="number"
-					value={density * 100}
-					onChange={(e) => AutomatonActions.changeDensity(e.target.value / 100)}
+					value={Math.round(density * 10000) / 100}
+					onChange={(e) => {
+						if (e.target.checkValidity()) {
+							AutomatonActions.changeDensity(e.target.value / 100)
+						}
+					}}
 					min={0}
 					max={100}
+					step={0.01}
 					disabled={isPlaying}
 				/>
 			</label>
@@ -32,9 +37,14 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 				Ilosc wierszy:
 				<input
 					type="number"
-					value={rows}
-					onChange={(e) => { AutomatonActions.changeRows(Number(e.target.value)) }}
+					value={rows.toFixed(0)}
+					onChange={(e) => {
+						if (e.target.checkValidity()) {
+							AutomatonActions.changeRows(Number(e.target.value))
+						}
+					}}
 					min={1}
+					max={999}
 					step={1}
 					disabled={isPlaying}
 				/>
@@ -45,9 +55,14 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 				Ilosc kolumn:
 				<input
 					type="number"
-					value={cols}
-					onChange={(e) => { AutomatonActions.changeCols(Number(e.target.value)) }}
+					value={cols.toFixed(0)}
+					onChange={(e) => {
+						if (e.target.checkValidity()) {
+							AutomatonActions.changeCols(Number(e.target.value))
+						}
+					}}
 					min={1}
+					max={999}
 					step={1}
 					disabled={isPlaying}
 				/>
@@ -58,9 +73,15 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 				Okres odświeżania (ms):
 				<input
 					type="number"
-					value={interval}
-					onChange={(e) => { AutomatonActions.changeInterval(Number(e.target.value)) }}
+					value={interval.toFixed(0)}
+					onChange={(e) => {
+						if (e.target.checkValidity()) {
+							AutomatonActions.changeInterval(Number(e.target.value))
+						}
+					}}
 					min={0}
+					max={999}
+					step={1}
 					disabled={isPlaying}
 				/>
 			</label>
