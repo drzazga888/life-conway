@@ -7,15 +7,15 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 
 		{/* buttons start / stop / reset / next */}
 		<div className="buttons">
-			<button onClick={AutomatonActions.togglePlaying}>{isPlaying ? 'Stop' : 'Start'}</button>
-			<button onClick={AutomatonActions.nextStep} disabled={isPlaying}>Krok</button>
-			<button onClick={AutomatonActions.reset} disabled={isPlaying}>Reset</button>
+			<button title="Rozpocznij / zakończ symulację" onClick={AutomatonActions.togglePlaying}>{isPlaying ? 'Stop' : 'Start'}</button>
+			<button title="Następny krok symulacji" onClick={AutomatonActions.nextStep} disabled={isPlaying}>Krok</button>
+			<button title="Zresetuj automat" onClick={AutomatonActions.reset} disabled={isPlaying}>Reset</button>
 		</div>
 
 		<div className="input-blocks">
 
 			{/* density input */}
-			<label>
+			<label title="Wspoółczynnik żywych komórek do wszystkich możliwych (w %); można wprowadzać wartości o 0 do 100 co 0.01">
 				Gestosc (%):
 				<input
 					type="number"
@@ -33,7 +33,7 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 			</label>
 
 			{/* rows input */}
-			<label>
+			<label title="Ilość wierszy automatu; można wprowadzać wartości całkowite od 1 do 999">
 				Ilosc wierszy:
 				<input
 					type="number"
@@ -51,9 +51,9 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 			</label>
 
 			{/* cols input */}
-			<label>
+			<label title="Ilość kolumn automatu; można wprowadzać wartości całkowite od 1 do 999">
 				Ilosc kolumn:
-				<input
+				<input title=""
 					type="number"
 					value={cols.toFixed(0)}
 					onChange={(e) => {
@@ -69,7 +69,7 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 			</label>
 
 			{/* interval input */}
-			<label>
+			<label title="Okres, po którym wykonany zostanie następny krok (w ms); można wprowadzać wartości całkowite od 0 do 9999; wartość '0' oznacza, że symulacja jest prowadzona najszybciej jak to jest możliwe">
 				Okres odświeżania (ms):
 				<input
 					type="number"
@@ -80,7 +80,7 @@ const Inputs = ({ isPlaying, density, rows, cols, interval }) => (
 						}
 					}}
 					min={0}
-					max={999}
+					max={9999}
 					step={1}
 					disabled={isPlaying}
 				/>
