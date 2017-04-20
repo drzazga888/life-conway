@@ -41,7 +41,7 @@ class Board extends React.PureComponent {
 }
 
 Board.defaultProps = {
-	liveColor: '#2FB298',
+	liveColor: '#7AFF9B',
 	gap: 2,
 	size: 5
 };
